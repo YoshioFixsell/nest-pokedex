@@ -7,19 +7,17 @@ import { PokeResponse } from './interfaces/poke-response.interface';
 export class SeedService {
   private readonly axios: AxiosInstance = axios;
 
-  
+
 
   async runSeed() {
-   const {data} = await this.axios.get<PokeResponse>('https://pokeapi.co/api/v2/pokemon?limit=650')
+   const {data} = await this.axios.get<PokeResponse>('https://pokeapi.co/api/v2/pokemon?limit=50')
 
    //desestructuramos el resultado y obtenemos el name y url de cada pokemon, luego separamos el url por segmentos para obtener el id del pokemon
-   data.results.forEach( async ({name, url}) => {
+   const SeedData =  data.results.forEach( async ({name, url}) => {
       const segments = url.split('/');
       const no:number = +segments[ segments.length - 2 ];
+      console.log({name, no});
    })
-
    
-    
-    return data.results;
   }
 }
